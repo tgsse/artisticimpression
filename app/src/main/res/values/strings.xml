@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Artistic Impression</string>
+    <string name="label_screen_quiz">Quiz</string>
+    <string name="label_screen_favorites">Favorites</string>
+    <string name="label_screen_explore">Explore</string>
+    <string name="label_screen_details">Details</string>
+    <string name="content_desc_navigate_back">Navigate back</string>
 </resources>
