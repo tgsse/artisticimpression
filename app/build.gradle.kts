@@ -17,8 +17,8 @@ plugins {
 val prop = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "apiKeys.properties")))
 }
-//val apiKey: String = prop.getProperty("API_KEY") ?: ""
 val baseUrl: String = prop.getProperty("BASE_URL") ?: ""
+val imagesUrl: String = prop.getProperty("IMAGES_URL") ?: ""
 
 android {
     namespace = "com.ix.artisticimpression"
@@ -46,8 +46,8 @@ android {
             )
         }
         debug {
-//            buildConfigField("String", "apiKey", "\"$apiKey\"")
             buildConfigField("String", "baseUrl", "\"$baseUrl\"")
+            buildConfigField("String", "imagesUrl", "\"$imagesUrl\"")
         }
     }
     compileOptions {
