@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -10,6 +13,12 @@ plugins {
     kotlin("kapt")
     id("com.google.devtools.ksp")
 }
+
+val prop = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "apiKeys.properties")))
+}
+//val apiKey: String = prop.getProperty("API_KEY") ?: ""
+val baseUrl: String = prop.getProperty("BASE_URL") ?: ""
 
 android {
     namespace = "com.ix.artisticimpression"
@@ -36,6 +45,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+//            buildConfigField("String", "apiKey", "\"$apiKey\"")
+            buildConfigField("String", "baseUrl", "\"$baseUrl\"")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -46,6 +59,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.3"
