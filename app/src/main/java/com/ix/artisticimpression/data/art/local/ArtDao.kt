@@ -13,5 +13,5 @@ interface ArtDao {
     fun saveDailyArt(art: Art)
 
     @Query("SELECT * FROM art_table")
-    fun loadDailyArt(): Flow<Art>
+    suspend fun loadDailyArt(): Art?
 }

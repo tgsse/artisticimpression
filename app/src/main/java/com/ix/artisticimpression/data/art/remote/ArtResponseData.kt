@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class ArtResponse(
     @SerialName("data")
-    val data: ArtResponseData
+    val data: ArtResponseData?
 )
 
 @Serializable

@@ -5,11 +5,16 @@ import com.ix.artisticimpression.data.art.remote.ArtRemoteRepositoryI
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
+interface ArtRepositoryI {
+    val remote: ArtRemoteRepositoryI
+    val local: ArtLocalRepositoryI
+}
+
 @ViewModelScoped
 class ArtRepository @Inject constructor(
     artRemoteRepository: ArtRemoteRepositoryI,
     artLocalRepository: ArtLocalRepositoryI
-) {
-    val remote = artRemoteRepository
-    val local = artLocalRepository
+): ArtRepositoryI {
+    override val remote = artRemoteRepository
+    override val local = artLocalRepository
 }

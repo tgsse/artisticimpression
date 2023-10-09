@@ -1,5 +1,8 @@
 package com.ix.artisticimpression.data.di
 
+import com.ix.artisticimpression.data.art.ArtRepository
+import com.ix.artisticimpression.data.art.ArtRepositoryI
+import com.ix.artisticimpression.data.art.local.ArtLocalRepositoryI
 import com.ix.artisticimpression.data.art.remote.ArtRemoteDataSource
 import com.ix.artisticimpression.data.art.remote.ArtRemoteRepository
 import com.ix.artisticimpression.data.art.remote.ArtRemoteRepositoryI
@@ -68,5 +71,11 @@ object NetworkModule {
     @Provides
     fun provideArtRemoteRepository(artRemoteDataSource: ArtRemoteDataSource): ArtRemoteRepositoryI {
         return ArtRemoteRepository(artRemoteDataSource)
+    }
+
+    @Singleton
+    @Provides
+    fun provideArtRepository(artLocalRepository: ArtLocalRepositoryI, artRemoteRepository: ArtRemoteRepositoryI): ArtRepositoryI {
+        return ArtRepository(artRemoteRepository, artLocalRepository)
     }
 }

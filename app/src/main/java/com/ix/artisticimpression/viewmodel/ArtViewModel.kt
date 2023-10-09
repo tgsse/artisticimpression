@@ -1,11 +1,9 @@
 package com.ix.artisticimpression.viewmodel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ix.artisticimpression.R
-import com.ix.artisticimpression.data.art.ArtRepository
+import com.ix.artisticimpression.data.art.ArtRepositoryI
 import com.ix.artisticimpression.data.art.local.Art
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,9 +27,8 @@ sealed class ArtEvent {
 
 @HiltViewModel
 class ArtViewModel @Inject constructor(
-    private val artRepository: ArtRepository,
-    application: Application
-) : AndroidViewModel(application = application) {
+    private val artRepository: ArtRepositoryI,
+) : ViewModel() {
 
     private val uiEventChannel = Channel<UiEvent>()
     val uiEvents = uiEventChannel.receiveAsFlow()
@@ -51,7 +48,7 @@ class ArtViewModel @Inject constructor(
 
     private fun loadDailyArt() {
         viewModelScope.launch(Dispatchers.IO) {
-            val art = artRepository.local.loadDailyArt().firstOrNull()
+            val art = artRepository.local.loadDailyArt()
             if (art != null) {
                 _state.update { s ->
                     s.copy(
@@ -76,8 +73,10 @@ class ArtViewModel @Inject constructor(
             try {
                 _state.update { uiState -> uiState.copy(isLoading = true) }
                 val art = artRepository.remote.fetchDailyArt()
-                _state.update { uiState -> uiState.copy(dailyArt = art) }
-                saveDailyArt(art)
+                if (art != null) {
+                    _state.update { uiState -> uiState.copy(dailyArt = art) }
+                    saveDailyArt(art)
+                } else throw Exception("An error occurred")
             } catch (e: Exception) {
                 showError(e)
             } finally {
@@ -92,14 +91,13 @@ class ArtViewModel @Inject constructor(
             uiEventChannel.send(
                 element = UiEvent.ShowMessage(
                     message = e.message
-                        ?: getApplication<Application>().resources.getString(R.string.error_default)
                 )
             )
         }
     }
 
     sealed class UiEvent {
-        data class ShowMessage(val message: String) : UiEvent()
+        data class ShowMessage(val message: String?) : UiEvent()
 
 //        object NavigateToDetail : UiEvent()
     }
