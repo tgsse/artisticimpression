@@ -12,6 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import com.ix.artisticimpression.R
 import com.ix.artisticimpression.ui.components.BackIconButton
@@ -20,26 +22,31 @@ import com.ix.artisticimpression.ui.theme.ArtisticImpressionTheme
 
 @Composable
 fun DetailsScreen(
-    onNavigateBack: () -> Unit = {}
+    onNavigateBack: () -> Unit = {},
 ) {
+    val screenContentDesc = stringResource(id = R.string.label_screen_details)
+
     Scaffold(
         topBar = {
             TopBar(
                 title = stringResource(id = R.string.label_screen_details),
-                navigationIcon = { BackIconButton(onClick = onNavigateBack) }
+                navigationIcon = { BackIconButton(onClick = onNavigateBack) },
             )
-        }
+        },
     ) { paddingValues ->
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues),
-            color = MaterialTheme.colorScheme.background
+                .padding(paddingValues)
+                .semantics {
+                    contentDescription = screenContentDesc
+                },
+            color = MaterialTheme.colorScheme.background,
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text("Details")
             }

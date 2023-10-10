@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -21,11 +20,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import coil.compose.AsyncImage
 import com.ix.artisticimpression.R
+import com.ix.artisticimpression.ui.components.ViewDetailsButton
 import com.ix.artisticimpression.ui.theme.spacing
 import com.ix.artisticimpression.viewmodel.ArtEvent
 import com.ix.artisticimpression.viewmodel.ArtViewModel
@@ -33,8 +36,9 @@ import com.ix.artisticimpression.viewmodel.ArtViewModel
 @Composable
 fun QuizScreen(
     onNavigateToDetails: () -> Unit = {},
-    viewModel: ArtViewModel = hiltViewModel()
+    viewModel: ArtViewModel = hiltViewModel(),
 ) {
+    val screenContentDesc = stringResource(id = R.string.label_screen_quiz)
     val lifecycleOwner = LocalLifecycleOwner.current
 //    val scope = rememberCoroutineScope()
 //    val snackbarHostState = remember { SnackbarHostState() }
@@ -55,15 +59,18 @@ fun QuizScreen(
 
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        color = MaterialTheme.colorScheme.background,
     ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(MaterialTheme.spacing.m)
-                .verticalScroll(rememberScrollState()),
+                .verticalScroll(rememberScrollState())
+                .semantics {
+                    contentDescription = screenContentDesc
+                },
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.m))
             Text("Can you guess today's art piece?")
@@ -71,19 +78,19 @@ fun QuizScreen(
 
             if (state.dailyArt == null) {
                 Text(
-                    text = "No daily art loaded :("
+                    text = "No daily art loaded :(",
                 )
             } else {
                 Text(
-                    text = state.dailyArt!!.artist
+                    text = state.dailyArt!!.artist,
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.m))
                 Text(
-                    text = state.dailyArt!!.title
+                    text = state.dailyArt!!.title,
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.m))
                 Text(
-                    text = state.dailyArt!!.year
+                    text = state.dailyArt!!.year,
                 )
                 Spacer(modifier = Modifier.height(MaterialTheme.spacing.m))
                 AsyncImage(
@@ -93,14 +100,12 @@ fun QuizScreen(
                     alignment = Alignment.Center,
                     error = painterResource(id = R.drawable.image_placeholder),
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxSize(),
                 )
             }
 
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.m))
-            Button(onClick = { onNavigateToDetails() }) {
-                Text("View Details")
-            }
+            ViewDetailsButton(onNavigateToDetails)
         }
     }
 }
