@@ -31,7 +31,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.ix.artisticimpression.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -129,6 +129,12 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.44")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.48")
+    /* Note: If you use Jetpack integrations, you must also include the annotation processors
+    for the integrated libraries with kaptTest or kaptAndroidTest for Kotlin,
+    or with testAnnotationProcessor or androidTestAnnotationProcessor for Java.
+    */
 
     // Testing
     testImplementation("junit:junit:4.13.2")
