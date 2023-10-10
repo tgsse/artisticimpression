@@ -1,6 +1,5 @@
 package com.ix.artisticimpression.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ix.artisticimpression.data.art.ArtRepositoryI
@@ -12,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 data class ArtState(
@@ -86,7 +86,7 @@ class ArtViewModel @Inject constructor(
     }
 
     private fun showError(e: Exception) {
-        Log.e(this.javaClass.toString(), e.toString())
+        Timber.e(e)
         viewModelScope.launch {
             uiEventChannel.send(
                 element = UiEvent.ShowMessage(
