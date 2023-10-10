@@ -23,7 +23,7 @@ object DatabaseModule {
     fun provideArtDatabase(@ApplicationContext context: Context) = Room.databaseBuilder(
         context = context,
         klass = ArtDb::class.java,
-        name = artDatabase
+        name = artDatabase,
     ).build()
 
     @Singleton

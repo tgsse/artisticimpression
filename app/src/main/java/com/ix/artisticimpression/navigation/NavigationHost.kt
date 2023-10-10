@@ -20,16 +20,16 @@ import com.ix.artisticimpression.ui.screens.quiz.QuizScreen
 
 @Composable
 fun NavigationHost(
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     NavHost(
         navController,
         startDestination = Routes.Main.route,
-        route = Routes.Root.route
+        route = Routes.Root.route,
     ) {
         fun onNavigateToDetails() {
             navController.navigate(
-                route = Routes.Details.route
+                route = Routes.Details.route,
             ) {
                 popUpTo(Routes.Main.route)
             }
@@ -41,7 +41,7 @@ fun NavigationHost(
 
         composable(Routes.Details.route) { entry ->
             DetailsScreen(
-                onNavigateBack = { navController.popBackStack() }
+                onNavigateBack = { navController.popBackStack() },
             )
         }
     }
@@ -54,12 +54,12 @@ fun BottomTabNavHost(onNavigateToDetails: () -> Unit) {
     Scaffold(
         bottomBar = {
             NavBar(navController)
-        }
+        },
     ) { innerPadding ->
         NavHost(
             navController,
             startDestination = Routes.Quiz.route,
-            Modifier.padding(innerPadding)
+            Modifier.padding(innerPadding),
         ) {
             composable(Routes.Quiz.route) {
                 QuizScreen(onNavigateToDetails = onNavigateToDetails)
@@ -76,7 +76,7 @@ fun BottomTabNavHost(onNavigateToDetails: () -> Unit) {
 
 @Composable
 private inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(
-    navController: NavController
+    navController: NavController,
 ): T {
     val navGraphRoute = destination.parent?.route ?: return hiltViewModel()
     val parentEntry = remember(this) {

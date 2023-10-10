@@ -16,6 +16,6 @@ fun ArtResponseData.toArt(): Art {
         title = title,
         artist = artist,
         year = formattedYear,
-        imageUrl = imageUrl
+        imageUrl = imageUrl,
     )
 }

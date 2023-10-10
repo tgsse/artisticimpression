@@ -21,7 +21,7 @@ private val darkColorScheme = darkColorScheme(
     tertiary = purple,
     background = black,
     onBackground = light,
-    error = red
+    error = red,
 )
 
 private val lightColorScheme = lightColorScheme(
@@ -30,7 +30,7 @@ private val lightColorScheme = lightColorScheme(
     tertiary = purple,
     background = black,
     onBackground = light,
-    error = red
+    error = red,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -48,7 +48,7 @@ fun ArtisticImpressionTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = false,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -71,6 +71,6 @@ fun ArtisticImpressionTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

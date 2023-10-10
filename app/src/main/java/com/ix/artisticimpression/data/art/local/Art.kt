@@ -9,7 +9,7 @@ class Art(
     val title: String,
     val artist: String,
     val year: String,
-    val imageUrl: String
+    val imageUrl: String,
 
 ) {
     @PrimaryKey(autoGenerate = true)

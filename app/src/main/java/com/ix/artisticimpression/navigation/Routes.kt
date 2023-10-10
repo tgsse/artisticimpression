@@ -8,5 +8,5 @@ enum class Routes(val route: String) {
     Favorites("main/favorites"),
     Explore("main/explore"),
 
-    Details("details")
+    Details("details"),
 }

@@ -33,7 +33,6 @@ class ArtLocalDataSourceTest {
 
     @Before
     fun setup() {
-
         hiltRule.inject()
 
         artDao = artDb.artDao()

@@ -13,8 +13,8 @@ interface ArtRepositoryI {
 @ViewModelScoped
 class ArtRepository @Inject constructor(
     artRemoteRepository: ArtRemoteRepositoryI,
-    artLocalRepository: ArtLocalRepositoryI
-): ArtRepositoryI {
+    artLocalRepository: ArtLocalRepositoryI,
+) : ArtRepositoryI {
     override val remote = artRemoteRepository
     override val local = artLocalRepository
 }

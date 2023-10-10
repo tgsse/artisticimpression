@@ -9,7 +9,7 @@ interface ArtRemoteRepositoryI {
 }
 
 class ArtRemoteRepository @Inject constructor(
-    private val artRemoteDataSource: ArtRemoteDataSource
+    private val artRemoteDataSource: ArtRemoteDataSource,
 ) : ArtRemoteRepositoryI {
 
     override suspend fun fetchDailyArt(): Art? {

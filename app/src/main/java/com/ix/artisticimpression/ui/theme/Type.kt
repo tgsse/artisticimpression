@@ -14,52 +14,52 @@ object Fonts {
 // Set of Material typography styles to start with
 val Typography = Typography(
     displayLarge = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     displayMedium = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     displaySmall = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
 
     headlineLarge = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     headlineMedium = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     headlineSmall = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
 
     titleLarge = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     titleMedium = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     titleSmall = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
 
     bodyLarge = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     bodyMedium = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     bodySmall = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
 
     labelLarge = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     labelMedium = TextStyle(
-        fontFamily = Fonts.body
+        fontFamily = Fonts.body,
     ),
     labelSmall = TextStyle(
-        fontFamily = Fonts.body
-    )
+        fontFamily = Fonts.body,
+    ),
 )

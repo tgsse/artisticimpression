@@ -8,7 +8,7 @@ interface ArtLocalRepositoryI {
 }
 
 class ArtLocalRepository @Inject constructor(
-    private val artLocalDataSource: ArtLocalDataSource
+    private val artLocalDataSource: ArtLocalDataSource,
 ) : ArtLocalRepositoryI {
 
     override suspend fun loadDailyArt(): Art? {

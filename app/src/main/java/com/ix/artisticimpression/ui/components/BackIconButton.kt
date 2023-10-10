@@ -16,8 +16,8 @@ fun BackIconButton(onClick: () -> Unit) {
         Icon(
             imageVector = Icons.Outlined.ArrowBack,
             contentDescription = stringResource(
-                R.string.content_desc_navigate_back
-            )
+                R.string.content_desc_navigate_back,
+            ),
         )
     }
 }

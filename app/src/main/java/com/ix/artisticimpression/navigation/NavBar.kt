@@ -22,18 +22,18 @@ private val mainTabs = listOf(
     NavigationTabWithIcon(
         route = Routes.Quiz.route,
         label = R.string.label_screen_quiz,
-        icon = Icons.Outlined.QuestionMark
+        icon = Icons.Outlined.QuestionMark,
     ),
     NavigationTabWithIcon(
         route = Routes.Favorites.route,
         label = R.string.label_screen_favorites,
-        icon = Icons.Outlined.Favorite
+        icon = Icons.Outlined.Favorite,
     ),
     NavigationTabWithIcon(
         route = Routes.Explore.route,
         label = R.string.label_screen_explore,
-        icon = Icons.Outlined.Explore
-    )
+        icon = Icons.Outlined.Explore,
+    ),
 )
 
 @Composable
@@ -47,7 +47,7 @@ fun NavBar(navController: NavController) {
                 icon = {
                     Icon(
                         screen.icon,
-                        contentDescription = null
+                        contentDescription = null,
                     )
                 },
                 label = { Text(stringResource(screen.label)) },
@@ -66,7 +66,7 @@ fun NavBar(navController: NavController) {
                         // Restore state when reselecting a previously selected item
                         restoreState = true
                     }
-                }
+                },
             )
         }
     }

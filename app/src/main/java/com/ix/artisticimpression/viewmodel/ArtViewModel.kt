@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 data class ArtState(
     val isLoading: Boolean = true,
-    val dailyArt: Art? = null
+    val dailyArt: Art? = null,
 )
 
 sealed class ArtEvent {
@@ -51,7 +51,7 @@ class ArtViewModel @Inject constructor(
                 _state.update { s ->
                     s.copy(
                         dailyArt = art,
-                        isLoading = false
+                        isLoading = false,
                     )
                 }
             } else {
@@ -74,7 +74,9 @@ class ArtViewModel @Inject constructor(
                 if (art != null) {
                     _state.update { uiState -> uiState.copy(dailyArt = art) }
                     saveDailyArt(art)
-                } else throw Exception("An error occurred")
+                } else {
+                    throw Exception("An error occurred")
+                }
             } catch (e: Exception) {
                 showError(e)
             } finally {
@@ -88,8 +90,8 @@ class ArtViewModel @Inject constructor(
         viewModelScope.launch {
             uiEventChannel.send(
                 element = UiEvent.ShowMessage(
-                    message = e.message
-                )
+                    message = e.message,
+                ),
             )
         }
     }

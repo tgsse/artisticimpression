@@ -52,7 +52,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient,
-        jsonConverter: Converter.Factory
+        jsonConverter: Converter.Factory,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
