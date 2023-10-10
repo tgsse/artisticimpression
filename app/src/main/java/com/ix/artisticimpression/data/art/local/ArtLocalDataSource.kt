@@ -1,22 +1,17 @@
 package com.ix.artisticimpression.data.art.local
 
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class ArtLocalDataSource @Inject constructor(
     private val artDao: ArtDao,
-//    private val ioDispatcher: CoroutineDispatcher,
 ) {
-    suspend fun loadDailyArt(): Art? {
-        return artDao.loadDailyArt()
-//        return withContext(ioDispatcher) {
-//            artDao.loadDailyArt()
-//        }
+    suspend fun loadDailyArt(): Art? = withContext(Dispatchers.IO) {
+        artDao.loadDailyArt()
     }
 
-    fun saveDailyArt(art: Art) {
+    suspend fun saveDailyArt(art: Art) = withContext(Dispatchers.IO) {
         artDao.saveDailyArt(art)
     }
 }

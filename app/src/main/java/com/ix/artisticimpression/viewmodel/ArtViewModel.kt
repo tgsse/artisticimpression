@@ -6,11 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.ix.artisticimpression.data.art.ArtRepositoryI
 import com.ix.artisticimpression.data.art.local.Art
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -47,7 +45,7 @@ class ArtViewModel @Inject constructor(
     }
 
     private fun loadDailyArt() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val art = artRepository.local.loadDailyArt()
             if (art != null) {
                 _state.update { s ->
@@ -63,7 +61,7 @@ class ArtViewModel @Inject constructor(
     }
 
     private fun saveDailyArt(art: Art) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             artRepository.local.saveDailyArt(art)
         }
     }

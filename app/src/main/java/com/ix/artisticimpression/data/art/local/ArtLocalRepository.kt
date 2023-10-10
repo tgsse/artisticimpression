@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 interface ArtLocalRepositoryI {
     suspend fun loadDailyArt(): Art?
-    fun saveDailyArt(art: Art)
+    suspend fun saveDailyArt(art: Art)
 }
 
 class ArtLocalRepository @Inject constructor(
@@ -15,7 +15,7 @@ class ArtLocalRepository @Inject constructor(
         return artLocalDataSource.loadDailyArt()
     }
 
-    override fun saveDailyArt(art: Art) {
+    override suspend fun saveDailyArt(art: Art) {
         artLocalDataSource.saveDailyArt(art)
     }
 }
