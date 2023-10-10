@@ -28,6 +28,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import coil.compose.AsyncImage
 import com.ix.artisticimpression.R
+import com.ix.artisticimpression.ui.components.ProgressIndicator
 import com.ix.artisticimpression.ui.components.ViewDetailsButton
 import com.ix.artisticimpression.ui.theme.spacing
 import com.ix.artisticimpression.viewmodel.ArtEvent
@@ -76,7 +77,9 @@ fun QuizScreen(
             Text("Can you guess today's art piece?")
             Spacer(modifier = Modifier.height(MaterialTheme.spacing.m))
 
-            if (state.dailyArt == null) {
+            if (state.isLoading) {
+                ProgressIndicator()
+            } else if (state.dailyArt == null) {
                 Text(
                     text = "No daily art loaded :(",
                 )
